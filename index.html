@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Maafin Aku ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #fecdd3, #fbcfe8, #fda4af);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+    }
+    .box {
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(10px);
+      padding: 30px 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    button {
+      border: none;
+      color: white;
+      padding: 14px 26px;
+      font-size: 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+    button:hover { transform: scale(1.05); }
+    .yes { background: #22c55e }
+    .no { background: #ef4444 }
+    .buttons {
+      margin-top: 16px;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+    #cat {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- audio TANPA muted -->
+  <audio id="bgm" src="Blue.mp3" loop></audio>
+
+  <!-- GIF kucing -->
+  <img
+    id="cat"
+    src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXNhdDVzYW54bXJteDlhZGhuOWU5bGZqMnNtZHUxMjFzcHpnb3Z1byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Xr9TlAqw3S7VPOrftK/giphy.gif"
+  />
+
+  <div class="box">
+    <p id="text" style="font-size:24px;font-weight:600">
+      Maafin aku ya
+    </p>
+
+    <div class="buttons">
+      <button class="yes" onclick="yesClick()">Yes</button>
+      <button class="no" onclick="noClick()">No</button>
+    </div>
+  </div>
+
+  <script>
+    const messages = [
+      "Maafin aku ya",
+      "Engga",
+      "Yakin?",
+      "Benar-benar yakin?",
+      "Are you sure?",
+      "Please pikirkan lagi",
+      "Coba dipikirkan baik-baik",
+      "Kalau kamu bilang tidak, aku sedih",
+      "Aku benar-benar akan kecewa"
+    ];
+
+    let index = 0;
+
+    function noClick() {
+      index = (index + 1) % messages.length;
+      document.getElementById("text").innerText = messages[index];
+
+      const yesBtn = document.querySelector(".yes");
+      yesBtn.style.padding =
+        (16 + index * 4) + "px " + (28 + index * 4) + "px";
+    }
+
+    function yesClick() {
+      document.getElementById("text").innerHTML =
+        "<b>Terima kasih<br>I love you ❤️</b>";
+    }
+
+    // Browser cuma boleh play audio setelah ada klik
+    document.addEventListener("click", () => {
+      const audio = document.getElementById("bgm");
+      audio.play().catch(() => {});
+    }, { once: true });
+  </script>
+</body>
+</html>
